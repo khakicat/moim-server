@@ -1,7 +1,7 @@
 package khakicat.moimserver.member.repository;
 
 import java.util.Optional;
-import khakicat.moimserver.member.Member;
+import khakicat.moimserver.member.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

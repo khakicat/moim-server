@@ -1,6 +1,6 @@
 package khakicat.moimserver.security.service;
 
-import khakicat.moimserver.member.Member;
+import khakicat.moimserver.member.model.Member;
 import khakicat.moimserver.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;

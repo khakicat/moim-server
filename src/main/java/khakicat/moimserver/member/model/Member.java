@@ -1,4 +1,4 @@
-package khakicat.moimserver.member;
+package khakicat.moimserver.member.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

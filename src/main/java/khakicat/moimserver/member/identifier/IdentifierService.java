@@ -16,12 +16,17 @@ public class IdentifierService {
 
     public String getUniqueIdentifier() {
         Random random = new Random();
-        StringBuilder identifier = new StringBuilder();
+        String identifier = "";
         do {
-            identifier.delete(0, identifier.length());
-            IntStream.range(0, length)
-                    .forEach(num -> identifier.append(stringPool.charAt(num)));
-        } while (memberRepository.findByIdentifier(identifier.toString()).isPresent());
-        return identifier.toString();
+            identifier = generateRandomString();
+        } while (memberRepository.findByIdentifier(identifier).isPresent());
+        return identifier;
+    }
+
+    public String generateRandomString() {
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0, length)
+                .forEach(num -> sb.append(stringPool.charAt(num)));
+        return sb.toString();
     }
 }

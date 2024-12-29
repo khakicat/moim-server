@@ -19,7 +19,7 @@ public class IdentifierService {
         String identifier = "";
         do {
             identifier = generateRandomString();
-        } while (memberRepository.findByIdentifier(identifier).isPresent());
+        } while (isIdentifierDuplicate(identifier));
         return identifier;
     }
 
@@ -28,5 +28,9 @@ public class IdentifierService {
         IntStream.range(0, length)
                 .forEach(num -> sb.append(stringPool.charAt(num)));
         return sb.toString();
+    }
+
+    public boolean isIdentifierDuplicate(String identifier) {
+        return memberRepository.findByIdentifier(identifier).isPresent();
     }
 }

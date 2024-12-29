@@ -20,7 +20,7 @@ public class IdentifierService {
         do {
             identifier.delete(0, identifier.length());
             IntStream.range(0, length)
-                    .forEach(num -> stringPool.charAt(num));
+                    .forEach(num -> identifier.append(stringPool.charAt(num)));
         } while (memberRepository.findByIdentifier(identifier.toString()).isPresent());
         return identifier.toString();
     }

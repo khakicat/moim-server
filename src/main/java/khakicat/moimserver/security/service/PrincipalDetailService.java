@@ -1,8 +1,7 @@
 package khakicat.moimserver.security.service;
 
-import java.util.Optional;
 import khakicat.moimserver.member.Member;
-import khakicat.moimserver.member.MemberRepository;
+import khakicat.moimserver.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package khakicat.moimserver.member.identifier;
+package khakicat.moimserver.member.service;
 
 import java.util.Random;
 import java.util.stream.IntStream;

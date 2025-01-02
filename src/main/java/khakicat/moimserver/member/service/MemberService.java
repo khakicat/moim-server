@@ -21,4 +21,8 @@ public class MemberService {
                 memberDTO.getPassword()
         ));
     }
+
+    public boolean isEmailUnique(String email) {
+        return memberRepository.findByEmail(email).isEmpty();
+    }
 }

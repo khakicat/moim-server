@@ -20,7 +20,6 @@ public class PasswordPolicyCheck {
 
 
     public String checkPasswordPolicy(String password) {
-        List<String> errorMessages = new ArrayList<>();
 
         if (password.length() < passwordMinimumLength
                 || !specialChar.matcher(password).matches()

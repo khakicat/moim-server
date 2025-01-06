@@ -17,7 +17,7 @@ public class SignUpService {
 
     public Member signUp(SignUpDTO signUpDTO) {
         List<String> errorMessages = new ArrayList<>();
-        if (memberService.isEmailUnique(signUpDTO.getEmail()))
+        if (memberService.isEmailAlreadyExist(signUpDTO.getEmail()))
             errorMessages.add("이미 존재하는 이메일 입니다.");
 
         String checkResult = passwordPolicyCheck.checkPasswordPolicy(signUpDTO.getPassword());

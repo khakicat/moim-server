@@ -22,7 +22,7 @@ public class MemberService {
         ));
     }
 
-    public boolean isEmailUnique(String email) {
-        return memberRepository.findByEmail(email).isEmpty();
+    public boolean isEmailAlreadyExist(String email) {
+        return !memberRepository.findByEmail(email).isEmpty();
     }
 }

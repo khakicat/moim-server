@@ -1,7 +1,7 @@
 package khakicat.moimserver.security.service;
 
 import khakicat.moimserver.member.model.Member;
-import khakicat.moimserver.member.repository.MemberRepository;
+import khakicat.moimserver.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,25 +13,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PrincipalDetailService implements UserDetailsService {
 
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (username.contains("@")) {
-            return userBuilder(findMemberByEmail(username));
+            return userBuilder(memberService.findMemberByEmail(username));
         }
-        return userBuilder(findMemberByIdentifier(username));
-    }
-
-    public Member findMemberByEmail(String email) throws UsernameNotFoundException {
-        return memberRepository
-                .findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다."));
-    }
-
-    public Member findMemberByIdentifier(String identifier) throws UsernameNotFoundException {
-        return memberRepository
-                .findByIdentifier(identifier)
-                .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다."));
+        return userBuilder(memberService.findMemberByIdentifier(username));
     }
 
     public UserDetails userBuilder(Member member) {

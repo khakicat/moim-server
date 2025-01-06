@@ -65,4 +65,45 @@ class LoginControllerTest {
         Assertions.assertThat(cookie).isNotNull();
         Assertions.assertThat(cookie).contains("JSESSIONID");
     }
+
+    @Test
+    @DisplayName("identifier 로그인 테스트")
+    void login_withValidIdentifierAndPassword_returnSessionId() throws Exception {
+
+        String requestBody = """
+                {
+                    "username": "111111",
+                    "password": "TESTtest123!@#$"
+                }
+                """;
+
+        MvcResult mvcResult = mockMvc.perform(post("/api/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        MockHttpServletResponse response = mvcResult.getResponse();
+        String cookie = response.getHeader("Set-Cookie");
+
+        Assertions.assertThat(cookie).isNotNull();
+        Assertions.assertThat(cookie).contains("JSESSIONID");
+    }
+
+    @Test
+    @DisplayName("로그인 실패 테스트")
+    void login_withInvalidCredential_return401() throws Exception {
+
+        String requestBody = """
+                {
+                    "username": "test1234@gmail.com",
+                    "password": "TESTtest123!@#$"
+                }
+                """;
+
+        mockMvc.perform(post("/api/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
+                .andExpect(status().isUnauthorized());
+    }
 }
